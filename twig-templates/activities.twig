@@ -1,0 +1,3 @@
+{% for article in function('get_fg_post_type','dir-activity', 100)  %}
+<div>{{article.title}}</div>
+{% endfor %}

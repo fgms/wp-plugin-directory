@@ -1,0 +1,41 @@
+{% set options = function('get_option', 'realestate_settings') %}
+<div class="table-responsive">
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Unit</th>
+        <th>View</th>
+        <th>Floor</th>
+        <th>Price</th>
+        <th>Map</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for article in function('get_fg_post_type','real-estate', 100)  %}
+      {% set s = article.get_field('condo-status') %}
+      {% set status %}{% if s == 'sold' %}(Sold){% elseif s == 'pending' %}(Sale Pending){% endif %}{% endset %}
+      {# get location image #}
+      {% set location_image = false %}
+      {% set img_id = article.get_field('location-map') %}
+      {% if img_id is iterable %}{% set img_id = img_id | first %}{% endif %}
+      {% if  img_id + 0 > 0 %}
+        {% set location_image = TimberImage(img_id) %}
+      {% endif %}
+        {% if s != 'inactive' %}
+        <tr>
+          <td>{{article.get_field('condo-type')}} {{article.get_field('condo-style')}}</td>
+          <td>{{article.title}}</td>
+          <td>
+            {{article.get_field('condo-view')}}
+            <div>{{article.get_field('fg-summary')}}</div>
+          </td>
+          <td>{% if article.get_field('condo-style') == 'Condominium'%}{{article.get_field('condo-floor') | capitalize}}{% else %}N/A{% endif %}</td>
+          <td>{{article.get_field('condo-price')}} {{options.realestate_units | default('US')}} {{status | trim}}</td>
+          <td class="script-gallery-action">{%if location_image %}<a href="{{location_image.src}}" data-smoothzoom="group_{{img_id}}"><i class="fa fa-map-marker" aria-hidden="true"><img src="{{location_image.src |resize(100)}}" alt="Real-estate Unit {{article.title}}" style="dispaly:none;visibility:hidden;height:0;" /></i></a>{% endif %}</td>
+        </tr>
+        {% endif %}
+      {% endfor %}
+    </tbody>
+  </table>
+</div>

@@ -1,0 +1,12 @@
+<div class="announcements" style="position: relative;">
+  <div class="announcement-wrapper">
+    <ul data-ga-category="Directory - Announcements">
+      {% for article in function('get_fg_post_type','dir-announcement', 100)  %}
+      <li>
+        <div class="announcement-title">{{article.title}}</div>
+        <div class="announcement-message">{{article.content}}</div>
+      </li>
+      {% endfor %}
+    </ul>
+  </div>
+</div>

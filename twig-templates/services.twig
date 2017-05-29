@@ -1,0 +1,25 @@
+{%filter shortcodes %}
+[accordion]
+{% for s in options['services']  %}
+[panel title="{{s.title}}"]
+<div class="row">
+  {% if s.phone | length > 1 or s.online | length > 1 %}
+  <div class="col-md-8">{{s.content}}</div>
+  <div class="col-md-4">
+    {% if s.online | length > 0 %}
+      <div class="title">Make a request</div>
+      <button class="btn-inverse btn contact-link"
+              data-message-type="{{s.online}}"
+              data-activity="Check out time">Online<i class="circle-arrow-down "></i>
+      </button>
+    {% endif %}
+    {% if s.phone | length > 0 %}<p><strong>{{s.phone}}</strong></p>{% endif %}
+  </div>
+  {% else %}
+    <div class="col-md-12">{{s.content}}</div>
+  {% endif %}
+</div>
+[/panel]
+{% endfor %}
+[/accordion]
+{% endfilter %}

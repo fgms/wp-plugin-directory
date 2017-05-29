@@ -1,0 +1,12 @@
+{%filter shortcodes %}
+[accordion]
+{% for article in function('get_fg_post_type','dir-dining', 100)  %}
+[panel title="{{article.title}}"]
+<h3>{{article.title}}</h3>
+<div>{{article.get_field('fg-summary')}}</div>
+<pre>{{dump(article.get_field('fg-phone'))}}</pre>
+<pre>{{dump(article.get_field('fg-address'))}}</pre>
+[/panel]
+{% endfor %}
+[/accordion]
+{% endfilter %}
