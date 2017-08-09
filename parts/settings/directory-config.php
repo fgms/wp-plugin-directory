@@ -6,7 +6,25 @@ Order: 10
 Tab: Configuration
 */
 
+$choices_array = array(0=>'-- Select Guest Directory Index -- ');
+$my_wp_query = new WP_Query();
+$all_wp_pages = $my_wp_query->query(array('post_type'       => 'page',
+                                         'posts_per_page'   => 1000,
+                                          'orderby'         => 'title',
+                                          'order'           => 'asc'
 
+                                          ));
+
+foreach ($all_wp_pages as $page){
+    $choices_array[$page->ID] =  $page->post_title;
+}
+
+piklist('field',[
+  'type' => 'select',
+  'field' => 'gd_index',
+  'label' => __('Guest Directory Index'),
+  'choices' => $choices_array,
+]);
 piklist('field', [
     'type' => 'file',
     'field' => 'dir-logo',

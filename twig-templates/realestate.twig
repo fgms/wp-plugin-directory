@@ -1,41 +1,67 @@
 {% set options = function('get_option', 'realestate_settings') %}
+<h1 class="archive-title">{% if options.realestate_title %}{{options.realestate_title}}{% else %}{{archive_title}}{% endif %}</h1>
+{% include 'archive-real-estate-header.twig' ignore missing %}
+{{options.realestate_pre_text}}
+{% set column_order = []%}
+{% set column_values = {
+  'condo-status' : '',
+  'condo-style' : '',
+  'condo-type' : '',
+  'condo-unit' : '',
+  'condo-view' : '',
+  'condo-location' : '',
+  'condo-area' : '',
+  'condo-floor' : '',
+  'condo-price' : '',
+  'condo-index-details' : ''
+}%}
+
 <div class="table-responsive">
-  <table class="table">
+  <table class="table" id="real-estate-grid">
     <thead>
       <tr>
-        <th>Type</th>
-        <th>Unit</th>
-        <th>View</th>
-        <th>Floor</th>
-        <th>Price</th>
-        <th>Map</th>
+        {% for column in options.columns %}
+        <th>{{column.column_label}}</th>
+        {% set column_order = column_order | merge([column.column_type]) %}
+        {% endfor %}
       </tr>
     </thead>
     <tbody>
-      {% for article in function('get_fg_post_type','real-estate', 100)  %}
-      {% set s = article.get_field('condo-status') %}
-      {% set status %}{% if s == 'sold' %}(Sold){% elseif s == 'pending' %}(Sale Pending){% endif %}{% endset %}
-      {# get location image #}
-      {% set location_image = false %}
-      {% set img_id = article.get_field('location-map') %}
-      {% if img_id is iterable %}{% set img_id = img_id | first %}{% endif %}
-      {% if  img_id + 0 > 0 %}
-        {% set location_image = TimberImage(img_id) %}
-      {% endif %}
-        {% if s != 'inactive' %}
-        <tr>
-          <td>{{article.get_field('condo-type')}} {{article.get_field('condo-style')}}</td>
-          <td>{{article.title}}</td>
-          <td>
-            {{article.get_field('condo-view')}}
-            <div>{{article.get_field('fg-summary')}}</div>
-          </td>
-          <td>{% if article.get_field('condo-style') == 'Condominium'%}{{article.get_field('condo-floor') | capitalize}}{% else %}N/A{% endif %}</td>
-          <td>{{article.get_field('condo-price')}} {{options.realestate_units | default('US')}} {{status | trim}}</td>
-          <td class="script-gallery-action">{%if location_image %}<a href="{{location_image.src}}" data-smoothzoom="group_{{img_id}}"><i class="fa fa-map-marker" aria-hidden="true"><img src="{{location_image.src |resize(100)}}" alt="Real-estate Unit {{article.title}}" style="dispaly:none;visibility:hidden;height:0;" /></i></a>{% endif %}</td>
+      {% for article in function('get_fg_post_type','real-estate',100, 'meta_value','DESC', 'condo-price')  %}
+        {% set s = article.get_field('condo-status') %}
+        {% set unit %}
+          {% set display_type = article.get_field('condo-display-type') %}
+          {% if display_type == 'pdf' %}
+              {% set pdf_id = article.get_field('fg-pdf') %}
+              {% if pdf_id is iterable %}{% set pdf_id = pdf_id | first %}{% endif %}
+              {% set pdf = TimberImage(pdf_id) %}
+              <a href="{{pdf.src}}" target="_blank">{{article.title}} </a>
+          {% elseif display_type == 'html'%}
+              <a href="{{article.link}}">{{article.title}}</a>
+          {% else %}
+            {{article.title}}
+          {% endif %}
+        {% endset %}
+        {% set status %}{% if s == 'sold' %}(Sold){% elseif s == 'pending' %}(Sale Pending){% else %}Active{% endif %}{% endset %}
+        {% set column_values = column_values| merge({'condo-status' : status~''}) %}
+        {% set column_values = column_values| merge({'condo-style' : article.get_field('condo-style')}) %}
+        {% set column_values = column_values| merge({'condo-type' : article.get_field('condo-type')}) %}
+        {% set column_values = column_values| merge({'condo-unit' : unit | trim}) %}
+        {% set column_values = column_values| merge({'condo-view' : article.get_field('condo-view')}) %}
+        {% set column_values = column_values| merge({'condo-index-details' : article.get_field('condo-index-details')}) %}
+        {% set column_values = column_values| merge({'condo-price' : article.get_field('condo-price')~' '~options.realestate_units | default('US') }) %}
+        {% set column_values = column_values| merge({'condo-area' : article.get_field('condo-area')~' '~options.realestate_area_units | default('') }) %}
+        {% set column_values = column_values| merge({'condo-location' : article.get_field('condo-location') }) %}
+        {% set column_values = column_values| merge({'condo-floor' : article.get_field('condo-floor')|capitalize }) %}
+        {% if s in [ 'pending', 'active'] %}
+        <tr class="realestate-{{s}}">
+          {% for column in options.columns %}
+            <td>{{column_values[column.column_type]}}</td>
+          {% endfor %}
         </tr>
         {% endif %}
       {% endfor %}
     </tbody>
   </table>
 </div>
+{% include 'archive-real-estate-footer.twig' ignore missing %}

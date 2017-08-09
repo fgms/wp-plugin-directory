@@ -84,3 +84,20 @@ add_filter('piklist_admin_pages', function($pages){
   ];
   return $pages;
 });
+
+add_action( 'wp_enqueue_scripts', function(){
+  $options = get_option('directory_settings');
+  $gdirID = empty($options['gd_index']) ? 0 : intval($options['gd_index']);
+  if (get_the_ID() == $gdirID ):
+    wp_enqueue_style( 'wp-plugin-directory-style', plugin_dir_url( __FILE__ ) . 'assets/css/style.css' );
+    wp_enqueue_script('wp-plugin-directory-script',  plugin_dir_url( __FILE__ ) .'assets/js/script.js');
+    wp_deregister_style('theme-less');
+    wp_deregister_style('master-style-less');
+    wp_deregister_style('theme');
+    wp_deregister_style('ubermenu');
+    wp_deregister_style('ubermenu-white');
+    wp_deregister_script('fg-script');
+    wp_deregister_script('theme-master-script');
+  endif;
+
+}, 35);

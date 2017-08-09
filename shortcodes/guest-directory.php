@@ -2,7 +2,7 @@
 call_user_func(function () {
 	add_shortcode('guest_directory',function ($atts, $content)  {
 		$data = ['config' =>get_transient('fg_config')];
-		$options = get_option('directory_settings');  
+		$options = get_option('directory_settings');
     $template = 'guest-directory-base.twig';
 		// check if it is a gallery type post
       try {

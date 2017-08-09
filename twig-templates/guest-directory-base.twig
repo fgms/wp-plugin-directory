@@ -1,17 +1,5 @@
 {# guest-directory-base.twig #}
 {% spaceless %}{% endspaceless %}
-<!DOCTYPE html>
-<html {{site.language_attributes()}}>
-  <head>
-    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
-    <link rel="shortcut icon" type="image/x-icon" href="{{theme.link}}/assets/images/favicon.ico">
-    <link href="{{function('site_url')}}/wp-content/plugins/wp-plugin-directory/assets/css/bootstrap.min.css" rel="stylesheet" >
-    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" media="screen">
-    <link href="{{function('site_url')}}/wp-content/plugins/wp-plugin-directory/assets/css/style.css" rel="stylesheet" >
-
-  </head>
-  <body id="body-wrapper" class="{{body_class}}" data-spy="scroll" data-target="#nav" data-class="{{function('get_body_class')|join(' ')}}">
-
   	<div id="wrapper">
   		<div id="sidebar">
 				<a type="button" class="navbar-toggle btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
@@ -96,10 +84,3 @@
     		</div><!-- /container -->
     	</div>
     </div><!-- /wrapper -->
-    <script type="text/javascript" src="{{function('site_url')}}/wp-includes/js/jquery/jquery.js"></script>
-    <script type="text/javascript" src="{{function('site_url')}}/wp-content/plugins/wp-plugin-directory/assets/js/modernizr.js"></script>
-    <script type="text/javascript" src="{{function('site_url')}}/wp-content/plugins/wp-plugin-directory/assets/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="{{function('site_url')}}/wp-content/plugins/wp-plugin-directory/assets/js/smooth-scroll.min.js"></script>
-    <script type="text/javascript" src="{{function('site_url')}}/wp-content/plugins/wp-plugin-directory/assets/js/script.js"></script>
-  </body>
-</html>

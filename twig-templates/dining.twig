@@ -4,8 +4,8 @@
 [panel title="{{article.title}}"]
 <h3>{{article.title}}</h3>
 <div>{{article.get_field('fg-summary')}}</div>
-<pre>{{dump(article.get_field('fg-phone'))}}</pre>
-<pre>{{dump(article.get_field('fg-address'))}}</pre>
+<pre>{{article.get_field('fg-phone') |json_encode}}</pre>
+<pre>{{article.get_field('fg-address')|json_encode}}</pre>
 [/panel]
 {% endfor %}
 [/accordion]
