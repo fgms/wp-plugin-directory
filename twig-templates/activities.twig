@@ -1,29 +1,73 @@
-{% for article in function('get_fg_post_type','dir-activity', 100)  %}
-  <div>{{article.title}}</div>
-  {{article.get_field('fg-website')}}
-  {{article.get_field('fg-facebook')}}
-  {{article.get_field('fg-tripadvisor')}}
-  {{article.get_field('fg-googleplus')}}
-  {% for phone in article.get_field('fg-phone') %}
-    <div>{{phone.office}} {{phone.toll}} {{phone.mobile}}</div>
-  {% endfor %}
-  {% for contact in article.get_field('fg-contact') %}
-    {{contact.email}}
-  {% endfor %}
-  {{article.get_field('fg-summary')}}
-  {% set images = article.get_field('fg-image') %}
-  <div>
-  {% if images is iterable %}
-    {% filter shortcodes %}
-      [slick_carousel id="slick_activity_{{article.ID}}" ]
-      {% for image in images %}
-        {% set img_obj = TimberImage(image) %}
-        [slick_slide]<img src="{{img_obj.src}}" alt="{{img_obj.title}}" />[/slick_slide]
-      {% endfor %}
-      [/slick_carousel]
-    {% endfilter %}
-  {% else %}
+{% set feature_content ="" %}
+{% set regular_content ="" %}
+{% filter shortcodes %}
+{% for article in function('get_fg_post_type','dir-activity', 100,'menu_order','ASC')  %}
+  {# slick carousel#}
+  {% set slick_carousel %}
+    {% set images = article.get_field('fg-image') %}
+    {% if images is iterable %}
+        [slick_carousel id="slick_activity_{{article.ID}}" dots="true" ]
+        {% for image in images %}
+          {% set img_obj = TimberImage(image) %}
+          [slick_slide]<img src="{{img_obj.src}}" style="max-width:100%" alt="{{img_obj.title}}" />[/slick_slide]
+        {% endfor %}
+        [/slick_carousel]
+    {% else %}
+    {% endif %}
+  {% endset %}
 
+  {% if article.get_field('fg_activity_type') == 'feature' %}
+  {% set feature_content %}
+    {{feature_content}}
+    <li>
+      <div class="row">
+        <div class="col-md-4">
+            {{slick_carousel}}
+            {{article.get_field('fg-website')}}
+            {{article.get_field('fg-facebook')}}
+            {{article.get_field('fg-tripadvisor')}}
+            {{article.get_field('fg-googleplus')}}
+            {% set phone = article.get_field('fg-phone') %}
+            <div>{{phone.office}} {{phone.toll}} {{phone.mobile}}</div>
+
+            {% for contact in article.get_field('fg-contact') %}
+              {{contact.email}}
+            {% endfor %}
+        </div>
+        <div class="col-md-8">
+            <h3>{{article.title}}</h3>
+            <div>{{article.get_field('fg-summary')}}</div>
+        </div>
+      </div>
+    </li>
+    {% endset %}
+  {% else %}
+  {% set regular_content %}
+    {{regular_content}}
+    [panel title="{{article.title}}"]
+      <div class="row">
+        <div class="col-md-9 col-sm-8">
+          <h3>{{article.title}}</h3>
+          <div>{{article.get_field('fg-summary')}}</div>
+        </div>
+        <div class="col-md-3 col-sm-4">
+          {% set phone = article.get_field('fg-phone') %}
+          <div>{{phone.office}} {{phone.toll}} {{phone.mobile}}</div>
+
+          {% for contact in article.get_field('fg-contact') %}
+            {{contact.email}}
+          {% endfor %}
+        </div>
+      </div>
+    [/panel]
+    {% endset %}
   {% endif %}
-  </div>
 {% endfor %}
+{% if feature_content | trim | length > 10  %}
+  <ul class="activies-feature">{{feature_content}}</ul>
+{% endif %}
+<h3>Other Activities</h3>
+{% if regular_content | trim | length > 10 %}
+  [accordion]{{regular_content}}[/accordion]
+{% endif %}
+{% endfilter %}
