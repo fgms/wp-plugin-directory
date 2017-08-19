@@ -19,31 +19,67 @@ $piklist_editor_options = array( // Pass any option that is accepted by wp_edito
         'wp_autoresize_on' => true
       )
     );
+    piklist('field',[
+      'type' => 'radio',
+      'label' => __('Activity Type'),
+      'field' => 'fg_activity_type',
+      'choices' => [
+        'feature' => 'Feature',
+        'regular' => 'Regular'
+      ],
+      'value' =>'feature',
+      'columns' => 8
+    ]);
+
 
 piklist('field',[
   'type' => 'text',
   'label' => __('Website'),
   'field' => 'fg-website',
-  'columns' => 12
+  'columns' => 12,
+  'conditions' => [
+    [
+      'field' => 'fg_activity_type',
+      'value' => 'feature'
+    ]
+  ]
 ]);
 
 piklist('field',[
   'type' => 'text',
   'label' => __('Facebook'),
   'field' => 'fg-facebook',
-  'columns' => 12
+  'columns' => 12,
+  'conditions' => [
+    [
+      'field' => 'fg_activity_type',
+      'value' => 'feature'
+    ]
+  ]
 ]);
 piklist('field',[
   'type' => 'text',
   'label' => __('TripAdvisor'),
   'field' => 'fg-tripadvisor',
-  'columns' => 12
+  'columns' => 12,
+  'conditions' => [
+    [
+      'field' => 'fg_activity_type',
+      'value' => 'feature'
+    ]
+  ]
 ]);
 piklist('field',[
   'type' => 'text',
   'label' => __('Google+'),
   'field' => 'fg-googleplus',
-  'columns' => 12
+  'columns' => 12,
+  'conditions' => [
+    [
+      'field' => 'fg_activity_type',
+      'value' => 'feature'
+    ]
+  ]
 ]);
 
 piklist('field',[
@@ -99,5 +135,11 @@ piklist('field', [
     'field' => 'fg-image',
     'label' => 'Activity Images',
     'options' => array('button' => 'Add Image'),
-    'columns' => 12
+    'columns' => 12,
+    'conditions' => [
+      [
+        'field' => 'fg_activity_type',
+        'value' => 'feature'
+      ]
+    ]
 ]);

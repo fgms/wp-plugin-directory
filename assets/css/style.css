@@ -339,3 +339,220 @@ p {
 .circle-coupon-down {
   background-image: url("../images/circle_coupon.png");
 }
+
+ul.activies-feature {
+  margin: 0 0 30px;
+  list-style: none;
+  padding: 0;
+}
+ul.activies-feature >li {
+  padding: 30px;
+  background-color: rgba(255,255,255,0.9);
+  margin-bottom: 30px
+}
+
+.animated-control-wrapper .animiated-control-arrow,
+.slick-slider .animiated-control-arrow {
+  position: absolute;
+  top: 0;
+  width: 100px;
+  height: 100%;
+
+}
+.animated-control-wrapper .animiated-control-arrow span,
+.slick-slider .animiated-control-arrow span {
+  display: block;
+  cursor: pointer;
+  position: absolute;
+  width: 32px;
+  height: 40px;
+  top: 50%;
+  -webkit-transition: all 0.3s ease-out;
+  -moz-transition: all 0.3s ease-out;
+  -o-transition: all 0.3s ease-out;
+  transition: all 0.3s ease-out;
+  -webkit-transform: translateY(-50%);
+  -moz-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+  z-index: 10;
+}
+.animated-control-wrapper .animiated-control-arrow span:before,
+.slick-slider .animiated-control-arrow span:before,
+.animated-control-wrapper .animiated-control-arrow span:after,
+.slick-slider .animiated-control-arrow span:after {
+  display: block;
+  position: absolute;
+  width: 30px;
+  top: 20px;
+  height: 5px;
+  -webkit-transition: all 0.3s ease-out;
+  -moz-transition: all 0.3s ease-out;
+  -o-transition: all 0.3s ease-out;
+  transition: all 0.3s ease-out;
+  -moz-border-radius: 0 10px 10px 0;
+  border-radius: 0 10px 10px 0;
+  webkit-box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.25);
+  -moz-box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.25);
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.25);
+  content: ' ';
+  background-color: #fff;
+}
+
+.animated-control-wrapper .animiated-control-arrow span:hover,
+.slick-slider .animiated-control-arrow span:hover {
+  -webkit-transform: translateY(-50%) scaleY(0.85);
+  -moz-transform: translateY(-50%) scaleY(0.85);
+  -ms-transform: translateY(-50%) scaleY(0.85);
+  transform: translateY(-50%) scaleY(0.85);
+}
+.animated-control-wrapper .animiated-control-arrow span:hover:before,
+.slick-slider .animiated-control-arrow span:hover:before,
+.animated-control-wrapper .animiated-control-arrow span:hover:after,
+.slick-slider .animiated-control-arrow span:hover:after {
+  webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+}
+.animated-control-wrapper .animiated-control-arrow.control-arrow-prev,
+.slick-slider .animiated-control-arrow.control-arrow-prev {
+  left: 0;
+}
+.animated-control-wrapper .animiated-control-arrow.control-arrow-prev span,
+.slick-slider .animiated-control-arrow.control-arrow-prev span {
+  left: 0;
+  content: ' ';
+}
+.animated-control-wrapper .animiated-control-arrow.control-arrow-prev span:before,
+.slick-slider .animiated-control-arrow.control-arrow-prev span:before {
+  -webkit-transform: rotate(-45deg);
+  -moz-transform: rotate(-45deg);
+  -ms-transform: rotate(-45deg);
+  transform: rotate(-45deg);
+  -webkit-transform-origin: 0 110%;
+  -moz-transform-origin: 0 110%;
+  -ms-transform-origin: 0 110%;
+  transform-origin: 0 110%;
+  -moz-border-radius: 10px 10px 10px 0;
+  border-radius: 10px 10px 10px 0;
+}
+.animated-control-wrapper .animiated-control-arrow.control-arrow-prev span:after,
+.slick-slider .animiated-control-arrow.control-arrow-prev span:after {
+  -webkit-transform: rotate(45deg);
+  -moz-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+  -webkit-transform-origin: 0 -10%;
+  -moz-transform-origin: 0 -10%;
+  -ms-transform-origin: 0 -10%;
+  transform-origin: 0 -10%;
+  -moz-border-radius: 0 10px 10px 10px;
+  border-radius: 0 10px 10px 10px;
+}
+.animated-control-wrapper .animiated-control-arrow.control-arrow-next,
+.slick-slider .animiated-control-arrow.control-arrow-next {
+  right: 0;
+}
+.animated-control-wrapper .animiated-control-arrow.control-arrow-next span,
+.slick-slider .animiated-control-arrow.control-arrow-next span {
+  right: 0;
+}
+.animated-control-wrapper .animiated-control-arrow.control-arrow-next span:before,
+.slick-slider .animiated-control-arrow.control-arrow-next span:before {
+  -webkit-transform: rotate(45deg);
+  -moz-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+  -webkit-transform-origin: 100% 110%;
+  -moz-transform-origin: 100% 110%;
+  -ms-transform-origin: 100% 110%;
+  transform-origin: 100% 110%;
+  -moz-border-radius: 10px 10px 0 10px;
+  border-radius: 10px 10px 0 10px;
+}
+
+.animated-control-wrapper .animiated-control-arrow.control-arrow-next span:after,
+.slick-slider .animiated-control-arrow.control-arrow-next span:after {
+  -webkit-transform: rotate(-45deg);
+  -moz-transform: rotate(-45deg);
+  -ms-transform: rotate(-45deg);
+  transform: rotate(-45deg);
+  -webkit-transform-origin: 100% -10%;
+  -moz-transform-origin: 100% -10%;
+  -ms-transform-origin: 100% -10%;
+  transform-origin: 100% -10%;
+  -moz-border-radius: 10px 0 10px 10px;
+  border-radius: 10px 0 10px 10px;
+}
+.animated-control-wrapper.animated-carousel-wrapper .animiated-control-arrow span,
+.slick-slider.animated-carousel-wrapper .animiated-control-arrow span {
+  width: 24px;
+}
+.animated-control-wrapper.animated-carousel-wrapper .animiated-control-arrow span:before,
+.slick-slider.animated-carousel-wrapper .animiated-control-arrow span:before,
+.animated-control-wrapper.animated-carousel-wrapper .animiated-control-arrow span:after,
+.slick-slider.animated-carousel-wrapper .animiated-control-arrow span:after {
+  width: 24px;
+  height: 3px;
+  background-color: #fff !important;
+}
+.animated-control-wrapper.animated-carousel-wrapper .animiated-control-arrow.control-arrow-prev,
+.slick-slider.animated-carousel-wrapper .animiated-control-arrow.control-arrow-prev {
+  left: 24px;
+}
+.animated-control-wrapper.animated-carousel-wrapper .animiated-control-arrow.control-arrow-next,
+.slick-slider.animated-carousel-wrapper .animiated-control-arrow.control-arrow-next {
+  right: 24px;
+}
+@media screen and (min-width: 768px) {
+  .animated-control-wrapper.animated-carousel-wrapper .animiated-control-arrow span,
+  .slick-slider.animated-carousel-wrapper .animiated-control-arrow span {
+    width: 45px;
+  }
+  .animated-control-wrapper.animated-carousel-wrapper .animiated-control-arrow span:before,
+  .slick-slider.animated-carousel-wrapper .animiated-control-arrow span:before,
+  .animated-control-wrapper.animated-carousel-wrapper .animiated-control-arrow span:after,
+  .slick-slider.animated-carousel-wrapper .animiated-control-arrow span:after {
+    width: 45px;
+    height: 3px;
+    background-color: #fff !important;
+  }
+  .animated-control-wrapper.animated-carousel-wrapper .animiated-control-arrow.control-arrow-prev,
+  .slick-slider.animated-carousel-wrapper .animiated-control-arrow.control-arrow-prev {
+    left: 60px;
+  }
+  .animated-control-wrapper.animated-carousel-wrapper .animiated-control-arrow.control-arrow-next,
+  .slick-slider.animated-carousel-wrapper .animiated-control-arrow.control-arrow-next {
+    right: 60px;
+  }
+}
+
+
+.slick-slider .slick-list {
+  margin: 0 30px;
+}
+
+
+.slick-slider .animiated-control-arrow span:before,
+.slick-slider .animiated-control-arrow span:after {
+  background-color: rgba(0,0,0,0.6);
+
+}
+
+
+
+.slick-slider img {
+  width: 100%;
+  max-width: 290px;
+  position: relative;
+}
+@media screen and (min-width: 768px) {
+
+
+}
+@media screen and (min-width: 768px) {
+
+}
+@media screen and (min-width: 993px) {
+
+}
