@@ -85,6 +85,8 @@ add_filter('piklist_admin_pages', function($pages){
   return $pages;
 });
 
+add_post_type_support( 'dir-activity', 'dir-dining', 'dir-announcement','page-attributes' );
+
 add_action( 'wp_enqueue_scripts', function(){
   $options = get_option('directory_settings');
   $gdirID = empty($options['gd_index']) ? 0 : intval($options['gd_index']);
