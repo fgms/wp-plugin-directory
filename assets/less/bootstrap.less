@@ -1,0 +1,87 @@
+.btn-primary, input[type="submit"] {
+	.btn-template(@btn-primary-color,@btn-primary-background, @btn-primary-padding,@btn-primary-radius);
+	border: @btn-primary-border;
+	font-family: @body-font-family;
+  position: relative;
+  font-size: 1.1em;
+	&.btn-inverse {
+		.btn-template(@btn-primary-inverse-color,@btn-primary-inverse-background, @btn-primary-padding,@btn-primary-radius);
+		border: @btn-primary-inverse-border;
+	}
+	&:hover, &:focus, &:active, &.active, &.disabled, &[disabled] {.btn-template-hover(@btn-primary-background-hover,@btn-primary-color-hover)}
+  &.btn-services {
+    display: block;
+    max-width: 280px;
+    margin: 8px ;
+    padding: @base-margin;
+    text-align: left;
+
+    &:after {
+      content: @btn-services-icon;
+      font-family: fontawesome;
+      position: absolute;
+      right: @base-margin;
+    }
+  }
+}
+
+.panel-default{
+  border: none;
+  >.panel-heading {
+    .radius(0);
+    padding: @base-margin @base-margin *2;
+    .panel-title {
+      padding-top: 0 !important;
+      font-size: 1em;
+    }
+    a {
+      &:hover {
+        text-decoration: none;
+      }
+    }
+  }
+  .panel-body {
+    padding: @base-margin * 2;;
+    .services-row {
+      .services-cta {
+        margin-top: @base-margin;
+        padding-top: @base-margin;
+        border-top: 1px dotted #bbb;
+        .title {
+          font-size: 1.6em;
+          color: @heading-color;
+          margin-bottom: @base-margin ;
+        }
+        .btn-primary{
+            display: block;
+            max-width: 280px;
+            padding: @base-margin;
+            text-align: left;
+            margin-bottom: @base-margin ;
+            &:after {
+              content: @btn-services-icon;
+              font-family: fontawesome;
+              position: absolute;
+              right: @base-margin;
+            }
+        }
+        .service-extention{
+            font-weight: 800;
+        }
+      }
+    }
+  }
+  @media screen and (min-width: @screen-lg-max){
+    .panel-body {
+      .services-row {
+        .services-cta {
+          padding-top:0;
+          margin-top: 0;
+          border: none;
+          padding-left: @base-margin;
+        }
+      }
+
+    }
+  }
+}

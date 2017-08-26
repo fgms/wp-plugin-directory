@@ -1,0 +1,48 @@
+ul.activies-feature {
+  margin: 0 0 30px;
+  list-style: none;
+  padding: 0;
+  >li {
+    padding: 30px;
+    background-color: rgba(255,255,255,0.9);
+    margin-bottom: 30px;
+    h3 {
+      margin-top: 0 ;
+      padding-top:0;
+      font-size: 1.8em;
+    }
+  }
+
+  .action-buttons {
+    margin: @base-margin auto ;
+    text-align: center;
+    padding-bottom: @base-margin;
+    border-bottom: 1px dotted @border-color;
+  }
+  @media screen and (min-width: @screen-lg-max){
+    .column-wrapper {
+      padding-left: @base-margin;;
+    }
+  }
+}
+
+.btn-reservation {
+  display: block;
+  max-width: 300px;
+  text-align: left;
+  margin-bottom: 0 ;
+  &:after {
+    content: @btn-reservation-icon;
+    font-family: fontawesome;
+    position: absolute;
+    right: @base-margin;
+  }
+}
+
+
+.activitie-social-media {
+  i {
+    font-size: 2em;
+    margin: 4px @base-margin 4px 0px;
+  }
+}
