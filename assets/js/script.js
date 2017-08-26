@@ -1,5 +1,21 @@
 var gd = {};
+function get_ajax_directory(){
+  jQuery.ajax({
+      type: 'post',
+      url: ajax_url,
+      data: {
+        action : 'gd_ajax_handler'
+      },
+      success: function(response){
+          console.log('The server responded: ' + response);
+      }
+    }
+  );
+}
 jQuery(function($) {
+
+
+
   //google fonts
   WebFontConfig = {	google: { families: [ 'Open+Sans:400,300,700:latin' ] } };
   (function() {
@@ -38,7 +54,7 @@ jQuery(function($) {
       $('#' + id).isOnScreen(function(deltas){
         if ( (  deltas.top - win_height > -10 )   ) {
           lasttop = id;
-          var top  = $('#'+lasttop).offset().top;          
+          var top  = $('#'+lasttop).offset().top;
         }
       })
     });

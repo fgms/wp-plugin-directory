@@ -48,6 +48,15 @@ add_action( 'pre_get_posts', function($query){
     $query->set('meta_key','fg-timestamp');
   }
 });
+
+add_action ('wp_ajax_nopriv_gd_ajax_handler','gd_ajax_handler');
+add_action ('wp_ajax_gd_ajax_handler','gd_ajax_handler');
+function gd_ajax_handler(){
+  $output = ['test'=>'abc'];
+  echo 'abc';
+  die();
+
+}
 add_action( 'save_post', function($post_id){
   // create another custom meta data fg-timestamp for all date fields.
   $whitelist = ['media-clip', 'newsletter','award','testimonial','special'];
@@ -91,7 +100,12 @@ add_action( 'wp_enqueue_scripts', function(){
   $options = get_option('directory_settings');
   $gdirID = empty($options['gd_index']) ? 0 : intval($options['gd_index']);
   if (get_the_ID() == $gdirID ):
-    wp_enqueue_style( 'wp-plugin-directory-style', plugin_dir_url( __FILE__ ) . 'assets/css/style.css' );
+    if (is_plugin_active('wp-less/bootstrap.php') ){
+  		wp_enqueue_style('wp-plugin-directory-style-less',plugin_dir_url( __FILE__ ) . 'assets/less/style.less');
+  	}
+  	else {
+  		wp_enqueue_style( 'wp-plugin-directory-style', plugin_dir_url( __FILE__ ) . 'assets/css/style.css' );
+  	}
     wp_enqueue_script('wp-plugin-directory-script',  plugin_dir_url( __FILE__ ) .'assets/js/script.js');
     wp_deregister_style('theme-less');
     wp_deregister_style('master-style-less');
@@ -100,6 +114,7 @@ add_action( 'wp_enqueue_scripts', function(){
     wp_deregister_style('ubermenu-white');
     wp_deregister_script('fg-script');
     wp_deregister_script('theme-master-script');
+    wp_add_inline_script( 'wp-plugin-directory-script', sprintf('var ajax_url = "%s";',admin_url( 'admin-ajax.php' ) ));
   endif;
 
 }, 35);
