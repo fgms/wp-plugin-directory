@@ -1,11 +1,11 @@
 <?php
 /**
  * Plugin Name: Guest Directory
- * Plugin URI: https://github.com/sturple/wp-plugin-directory/
+ * Plugin URI: https://github.com/fgms/wp-plugin-directory/
  * Description: Create Guest Directory
- * Version: 0.0.1
- * Author: Shawn Turple
- * Author URI: http://turple.ca
+ * Version: 0.0.2
+ * Author: Fifth Gear Marketing
+ * Author URI: https://github.com/fgms/
  * License: GPL-3.0
  * Plugin Type: Piklist
  */

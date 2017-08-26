@@ -1,16 +1,16 @@
 {
-    "name" : "sturple/wp-plugin-directory",
-    "version" : "0.0.1",
+    "name" : "fgms/wp-plugin-directory",
+    "version" : "0.0.2",
     "description" : "Wordpress plugin to create directory",
     "keywords" : ["wordpress", "plugin","FGMS"],
-    "homepage" : "https://github.com/sturple/wp-plugin-directory",
+    "homepage" : "https://github.com/fgms/wp-plugin-directory",
     "license" : "GPL-3.0",
     "type" : "wordpress-plugin",
     "authors" : [
         {
             "name" : "Shawn Turple",
-            "email" : "shawn@turple.ca",
-            "homepage" : "http://turple.ca",
+            "email" : "shawn.turple@fifthgeardev.com",
+            "homepage" : "https://github.com/sturple",
             "role" : "Developer"
         }
     ],
