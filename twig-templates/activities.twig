@@ -21,22 +21,54 @@
     {{feature_content}}
     <li>
       <div class="row">
-        <div class="col-md-4">
+        <div class="col-lg-5">
             {{slick_carousel}}
-            {{article.get_field('fg-website')}}
-            {{article.get_field('fg-facebook')}}
-            {{article.get_field('fg-tripadvisor')}}
-            {{article.get_field('fg-googleplus')}}
-            {% set phone = article.get_field('fg-phone') %}
-            <div>{{phone.office}} {{phone.toll}} {{phone.mobile}}</div>
 
+            {% if article.get_field('fg-contact') and article.get_field('fg-contact') | first['email'] | length > 5 %}
+            <div class="action-buttons">
+              <a href="" class="btn btn-primary btn-reservation">Make a Reservation</a>
+            </div>
+            {#
             {% for contact in article.get_field('fg-contact') %}
               {{contact.email}}
             {% endfor %}
+            #}
+            {% endif %}
+
+            {% if
+              article.get_field('fg-website') or
+              article.get_field('fg-facebook') or
+              article.get_field('fg-tripadvisor') or
+              article.get_field('fg-googleplus')
+            %}
+            <div class="activitie-social-media">
+              {% if article.get_field('fg-website') %}
+                <a href="{{article.get_field('fg-website')}}" target="_blank"><i class="fa fa-globe" aria-hidden="true"></i></a>
+              {% endif %}
+              {% if article.get_field('fg-facebook') %}
+                <a href="{{article.get_field('fg-facebook')}}" target="_blank"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+              {% endif %}
+              {% if article.get_field('fg-tripadvisor') %}
+                <a href="{{article.get_field('fg-tripadvisor')}}" target="_blank"><i class="fa fa-tripadvisor" aria-hidden="true"></i></a>
+              {% endif %}
+              {% if article.get_field('fg-googleplus') %}
+                <a href="{{article.get_field('fg-googleplus')}}" target="_blank"><i class="fa fa-googleplus" aria-hidden="true"></i></a>
+              {% endif %}
+
+
+            </div>
+            {% endif %}
+
+            {% set phone = article.get_field('fg-phone') %}
+            <div>{{phone.office}} {{phone.toll}} {{phone.mobile}}</div>
+
+
         </div>
-        <div class="col-md-8">
+        <div class="col-lg-7">
+          <div class="column-wrapper">
             <h3>{{article.title}}</h3>
             <div>{{article.get_field('fg-summary')}}</div>
+          </div>
         </div>
       </div>
     </li>

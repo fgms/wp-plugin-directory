@@ -48,6 +48,9 @@
                     {% endif %}
 
                     <div class="directory-buttons">
+                      {% for button in options['sections'] %}
+                        <a href="#section{{loop.index}}" class="btn btn-primary btn-services">{{button.title}} <i class="circle-arrow-down"></i></a>
+                      {% endfor %}
                       {% for button in options['dir-buttons'] %}
                         <a href="{{button.url}}" class="btn btn-primary btn-services">{{button.name}} <i class="circle-arrow-down"></i></a>
                       {% endfor %}

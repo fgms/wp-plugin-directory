@@ -2,18 +2,20 @@
 [accordion]
 {% for s in options['services']  %}
 [panel title="{{s.title}}"]
-<div class="row">
+<div class="row services-row">
   {% if s.phone | length > 1 or s.online | length > 1 %}
-  <div class="col-md-8">{{s.content}}</div>
-  <div class="col-md-4">
+  <div class=" col-lg-8">{{s.content}}</div>
+  <div class=" col-lg-4">
+    <div class="services-cta">
     {% if s.online | length > 0 %}
-      <div class="title">Make a request</div>
-      <button class="btn-inverse btn contact-link"
-              data-message-type="{{s.online}}"
-              data-activity="Check out time">Online<i class="circle-arrow-down "></i>
-      </button>
+        <div class="title">Make a request</div>
+        <a class="btn-primary btn btn-contact"
+                data-message-type="{{s.online}}"
+                data-activity="Check out time">Online<i class="circle-arrow-down "></i>
+        </a>
     {% endif %}
-    {% if s.phone | length > 0 %}<p><strong>{{s.phone}}</strong></p>{% endif %}
+    {% if s.phone | length > 0 %}<div class="service-extention">{{s.phone}}</div>{% endif %}
+    </div>
   </div>
   {% else %}
     <div class="col-md-12">{{s.content}}</div>
