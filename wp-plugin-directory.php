@@ -19,9 +19,14 @@ if ( file_exists( $composer_autoload = __DIR__ . '/vendor/autoload.php' ) /* che
 
     require_once $composer_autoload;
     require_once __DIR__ .'/shortcodes/guest-directory.php';
-}
+
+  }
+// Local autoloader
+require_once __DIR__ . '/autoloader.php';
+$test = new \Fgms\Directory\Test;
+
 call_user_func(function () {
-    $controller=new \Fgms\Directory\Controller(new \Fgms\WordPress\WordPressImpl());
+    $controller = new \Fgms\Directory\Controller(new \Fgms\WordPress\WordPressImpl());
 });
 /*
 if (class_exists('WPLessPlugin')){
