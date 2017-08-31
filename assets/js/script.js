@@ -1,19 +1,35 @@
 var gd = {};
-function get_ajax_directory(){
+function get_ajax_directory(content_id, content_type, container) {
+  console.log("get_ajax_directory");
   jQuery.ajax({
       type: 'post',
       url: ajax_url,
       data: {
-        action : 'gd_ajax_handler'
+        action : 'gd_ajax_handler',
+        content_id: content_id,
+        content_type: content_type
       },
       success: function(response){
-          console.log('The server responded: ' + response);
+        console.log(response);
+        jQuery(container).attr("data-content-set","true");
+        jQuery(container).html(response);
       }
     }
   );
 }
-jQuery(function($) {
 
+jQuery( function($) {
+
+  $('*[data-ajax-content]').on('click', function (e) {
+    var content_id   =  $(e.target).attr("data-content-id");
+    var content_type =  $(e.target).attr("data-content-type");
+    var panel_id =  $(e.target).attr("href");
+
+    var container = $(panel_id).find("gd-panel-container");
+    if(  $(container).attr("data-content-set") == 'false' ) {
+      get_ajax_directory(content_id, content_type, container );
+    }
+  })
 
 
   //google fonts

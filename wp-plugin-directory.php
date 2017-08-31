@@ -18,12 +18,11 @@ if ( file_exists( $composer_autoload = __DIR__ . '/vendor/autoload.php' ) /* che
 ) {
 
     require_once $composer_autoload;
-    require_once __DIR__ .'/shortcodes/guest-directory.php';
-
+    
   }
-// Local autoloader
-require_once __DIR__ . '/autoloader.php';
-$test = new \Fgms\Directory\Test;
+  // Local autoloader
+  require_once __DIR__ . '/autoloader.php';
+  require_once __DIR__ .'/shortcodes/guest-directory.php';
 
 call_user_func(function () {
     $controller = new \Fgms\Directory\Controller(new \Fgms\WordPress\WordPressImpl());
@@ -54,14 +53,20 @@ add_action( 'pre_get_posts', function($query){
   }
 });
 
+
 add_action ('wp_ajax_nopriv_gd_ajax_handler','gd_ajax_handler');
 add_action ('wp_ajax_gd_ajax_handler','gd_ajax_handler');
-function gd_ajax_handler(){
-  $output = ['test'=>'abc'];
-  echo 'abc';
-  die();
+function gd_ajax_handler() {
 
+  $content_id   = empty( $_POST['content_id'] )   ? '' : intval( $_POST['content_id']) ;
+  $content_type = empty( $_POST['content_type'] ) ? '' : preg_replace('/[^a-z]/i','', $_POST['content_type']);
+
+  $content_data = [ 'article' => Timber::get_post($content_id)];
+  echo Timber::compile( 'ajax-content/'.$content_type.'.twig', $content_data );
+  die();
 }
+
+
 add_action( 'save_post', function($post_id){
   // create another custom meta data fg-timestamp for all date fields.
   $whitelist = ['media-clip', 'newsletter','award','testimonial','special'];

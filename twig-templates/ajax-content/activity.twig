@@ -1,0 +1,14 @@
+<div class="row">
+    <div class="col-md-9 col-sm-8">
+        <h3>{{article.title}}</h3>
+        <div>{{article.get_field('fg-summary')}}</div>
+    </div>
+    <div class="col-md-3 col-sm-4">
+        {% set phone = article.get_field('fg-phone') %}
+        <div>{{phone.office}} {{phone.toll}} {{phone.mobile}}</div>
+
+        {% for contact in article.get_field('fg-contact') %}
+        {{contact.email}}
+        {% endfor %}
+    </div>
+</div>
