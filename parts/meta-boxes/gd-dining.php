@@ -19,6 +19,7 @@ $piklist_editor_options = array( // Pass any option that is accepted by wp_edito
         'wp_autoresize_on' => true
       )
     );
+
 piklist('field',[
   'type' => 'radio',
   'label' => __('Restaurant Type'),
@@ -31,6 +32,7 @@ piklist('field',[
   'value' =>'feature',
   'columns' => 8
 ]);
+
 piklist('field',[
   'type' => 'text',
   'label' => __('Website'),
@@ -114,6 +116,7 @@ piklist('field',[
     ],
   ]
 ]);
+
 piklist('field',[
   'type' => 'group',
   'label' => __('Contact(s)'),
@@ -136,6 +139,7 @@ piklist('field',[
 
   ]
 ]);
+
 piklist('field',[
   'type' => 'editor',
   'field' => 'fg-summary',
@@ -143,6 +147,7 @@ piklist('field',[
   'description'=> __(''),
   'options' => $piklist_editor_options
 ]);
+
 piklist('field', [
     'type' => 'file',
     'field' => 'fg-image',
