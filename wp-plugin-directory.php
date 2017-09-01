@@ -18,7 +18,7 @@ if ( file_exists( $composer_autoload = __DIR__ . '/vendor/autoload.php' ) /* che
 ) {
 
     require_once $composer_autoload;
-    
+
   }
   // Local autoloader
   require_once __DIR__ . '/autoloader.php';
@@ -27,14 +27,7 @@ if ( file_exists( $composer_autoload = __DIR__ . '/vendor/autoload.php' ) /* che
 call_user_func(function () {
     $controller = new \Fgms\Directory\Controller(new \Fgms\WordPress\WordPressImpl());
 });
-/*
-if (class_exists('WPLessPlugin')){
-	$lessConfig = WPLessPlugin::getInstance()->getConfiguration();
 
-	// compiles in the active theme, in a ‘compiled-css’ subfolder
-	$lessConfig->setUploadDir(plugin_dir_path( __FILE__ ) . 'assets/less');
-	$lessConfig->setUploadUrl(plugin_dir_url() . 'assets/css/');
-}*/
 function setTimeStampMetaDataDir($field,$id){
   if (! empty($_POST['_post_meta'][$field])){
     $date = $_POST['_post_meta'][$field];
@@ -110,12 +103,6 @@ add_action( 'wp_enqueue_scripts', function(){
   $options = get_option('directory_settings');
   $gdirID = empty($options['gd_index']) ? 0 : intval($options['gd_index']);
   if (get_the_ID() == $gdirID ):
-    if (is_plugin_active('wp-less/bootstrap.php') ){
-  		wp_enqueue_style('wp-plugin-directory-style-less',plugin_dir_url( __FILE__ ) . 'assets/less/style.less');
-  	}
-  	else {
-  		wp_enqueue_style( 'wp-plugin-directory-style', plugin_dir_url( __FILE__ ) . 'assets/css/style.css' );
-  	}
     wp_enqueue_script('wp-plugin-directory-script',  plugin_dir_url( __FILE__ ) .'assets/js/script.js');
     wp_deregister_style('theme-less');
     wp_deregister_style('master-style-less');
@@ -125,6 +112,12 @@ add_action( 'wp_enqueue_scripts', function(){
     wp_deregister_script('fg-script');
     wp_deregister_script('theme-master-script');
     wp_add_inline_script( 'wp-plugin-directory-script', sprintf('var ajax_url = "%s";',admin_url( 'admin-ajax.php' ) ));
+    if (is_plugin_active('wp-less/bootstrap.php') ){
+  		wp_enqueue_style('wp-plugin-directory-style', '/plugins/wp-plugin-directory/assets/less/style.less');
+  	}
+  	else {
+  		wp_enqueue_style( 'wp-plugin-directory-style', plugin_dir_url( __FILE__ ) . 'assets/css/style.css' );
+  	}
   endif;
 
-}, 35);
+}, 15);
