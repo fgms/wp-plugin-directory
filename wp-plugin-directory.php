@@ -118,7 +118,7 @@ add_action( 'wp_enqueue_scripts', function(){
   	}
     wp_enqueue_script('wp-plugin-directory-script',  plugin_dir_url( __FILE__ ) .'assets/js/script.js');
     wp_deregister_style('theme-less');
-    wp_deregister_style('master-style-less');
+    // wp_deregister_style('master-style-less');
     wp_deregister_style('theme');
     wp_deregister_style('ubermenu');
     wp_deregister_style('ubermenu-white');
