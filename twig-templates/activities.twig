@@ -6,12 +6,16 @@
   {% set slick_carousel %}
     {% set images = article.get_field('fg-image') %}
     {% if images is iterable %}
+    {#
         [slick_carousel id="slick_activity_{{article.ID}}" dots="true" ]
         {% for image in images %}
           {% set img_obj = TimberImage(image) %}
           [slick_slide]<img src="{{img_obj.src}}" style="max-width:100%" alt="{{img_obj.title}}" />[/slick_slide]
         {% endfor %}
         [/slick_carousel]
+        #}
+        {% set img_obj = TimberImage(images[0]) %}
+    <img src="{{img_obj.src}}" style="max-width:100%" alt="{{img_obj.title}}" />
     {% else %}
     {% endif %}
   {% endset %}
@@ -25,9 +29,9 @@
             {{slick_carousel}}
 
             {% if article.get_field('fg-contact') and article.get_field('fg-contact') | first['email'] | length > 5 %}
-            <div class="action-buttons">
+            {#<div class="action-buttons">
               <a href="" class="btn btn-primary btn-reservation">Make a Reservation</a>
-            </div>
+          </div>#}
             {#
             {% for contact in article.get_field('fg-contact') %}
               {{contact.email}}

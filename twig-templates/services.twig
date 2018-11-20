@@ -7,6 +7,7 @@
   <div class=" col-lg-8">{{s.content}}</div>
   <div class=" col-lg-4">
     <div class="services-cta">
+    {#
     {% if s.online | length > 0 %}
         <div class="title">Make a request</div>
         <a class="btn-primary btn btn-contact"
@@ -14,6 +15,7 @@
                 data-activity="Check out time">Online<i class="circle-arrow-down "></i>
         </a>
     {% endif %}
+    #}
     {% if s.phone | length > 0 %}<div class="service-extention">{{s.phone}}</div>{% endif %}
     </div>
   </div>

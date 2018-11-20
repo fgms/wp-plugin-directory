@@ -52,7 +52,9 @@
                         <a href="#section{{loop.index}}" class="btn btn-primary btn-services">{{button.title}} <i class="circle-arrow-down"></i></a>
                       {% endfor %}
                       {% for button in options['dir-buttons'] %}
+                        {% if button.name|length > 2 %}
                         <a href="{{button.url}}" class="btn btn-primary btn-services">{{button.name}} <i class="circle-arrow-down"></i></a>
+                        {% endif %}
                       {% endfor %}
                     </div>
                   </div>
@@ -75,7 +77,7 @@
                       data-section="{{loop.index}}"
                       data-ga-category="{{section.title}}">
 
-    					<div class="column-wrapper">
+              <div class="column-wrapper">
                 <h2>{{section.title}}</h2>
                 <div class="section-content">{{section.content}}</div>
                 {% include section.type~'.twig' ignore missing %}

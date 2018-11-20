@@ -39,7 +39,6 @@
             {% for contact in article.get_field('fg-contact') %}
               {{contact.email}}
             {% endfor %}
-            <pre>{{article.get_field('fg-address')|json_encode}}</pre>
         </div>
         <div class="col-md-8">
             <h3>{{article.title}}</h3>
@@ -64,7 +63,6 @@
           {% for contact in article.get_field('fg-contact') %}
             {{contact.email}}
           {% endfor %}
-          <pre>{{article.get_field('fg-address')|json_encode}}</pre>
         </div>
       </div>
     [/panel]

@@ -164,6 +164,7 @@ gd.updateImages = function() {
         var multiplier = 0.8;
         //console.log('cwrap',$cwrapper.outerHeight(),'pwrap', $pwrapper.outerHeight(), 'cwrap/mult', $cwrapper.outerHeight()/multiplier);
         var repeat = Math.ceil($cwrapper.outerHeight()/multiplier / $pwrapper.outerHeight());
+        repeat = 2;
         if (repeat >= 1) {
             var $pChildren = $pwrapper.children();
             for ( i = 0; i < repeat; ++i) {
@@ -208,6 +209,7 @@ gd.imagesLoaded = function($, fn) {
 
 gd.analytics = function() {
   var $ = jQuery;
+  return;
   $('body').on('click','a:not(.sz-zoomed),button,input[type="submit"], .navigation li', function(){
      var gaCategory = $(this).closest('*[data-ga-category]').attr('data-ga-category');
      var gaAction = 'Link';
@@ -238,10 +240,10 @@ gd.analytics = function() {
        if (typeof ga === 'function') {
          ga('send', 'event', gaCategory, gaAction, gaLabel );
        }
-       else {console.warn('Analytics Error - Cant track Event')}
+       else {/*console.warn('Analytics Error - Cant track Event')*/}
      }
      else {
-        console.warn('Analytics Error - No Category Defined ')
+        //console.warn('Analytics Error - No Category Defined ')
      }
   });
 }
